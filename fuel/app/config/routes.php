@@ -2,6 +2,9 @@
 return array(
 	'_root_'  => 'welcome/index',  // The default route
 	'_404_'   => 'welcome/404',    // The main 404 route
+
+	'add' => 'urls/add',
+	':key' => 'urls/redirect',
 	
 	/**
 	 * This is an example of a BASIC named route (used in reverse routing).
