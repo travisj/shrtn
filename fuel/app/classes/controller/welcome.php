@@ -19,7 +19,17 @@ class Controller_Welcome extends Controller {
 	 */
 	public function action_index()
 	{
-		$this->response->body = View::factory('welcome/index');
+		$data = array();
+		//$this->response->body = View::factory('welcome/index');
+		$data['urls'] = Model_Url::find('all', array(
+			'where' => array('public', 1),
+			'limit' => 20,
+			'order_by' => array('id' => 'desc'),
+		));
+
+		$data['bookmarklet'] = file_get_contents(APPPATH . '../../public/assets/js/bookmarklet.js');
+
+		$this->response->body = View::factory('welcome/info', $data);
 	}
 
 	/**

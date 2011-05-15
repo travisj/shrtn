@@ -8,8 +8,9 @@ class Create_urls {
 	{
 		\DBUtil::create_table('urls', array(
 			'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true),
-			'key' => array('constraint' => 20, 'type' => 'varchar'),
+			'title' => array('constraint'=>255, 'type'=>'varchar'),
 			'url' => array('type' => 'text'),
+			'public' => array('type'=>'tinyint'),
 
 		), array('id'));
 	}

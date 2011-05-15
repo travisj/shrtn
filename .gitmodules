@@ -13,3 +13,6 @@
 [submodule "docs"]
 	path = docs
 	url = git://github.com/fuel/docs.git
+[submodule "public/assets/lib/aristo"]
+	path = public/assets/lib/aristo
+	url = https://github.com/taitems/Aristo-jQuery-UI-Theme.git

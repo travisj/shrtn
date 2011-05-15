@@ -4,6 +4,8 @@ return array(
 	'_404_'   => 'welcome/404',    // The main 404 route
 
 	'add' => 'urls/add',
+	'bookmark' => 'urls/bookmarklet',
+
 	':key' => 'urls/redirect',
 	
 	/**

@@ -33,10 +33,10 @@ return array(
 	'production' => array(
 		'type'			=> 'mysql',
 		'connection'	=> array(
-			'hostname'   => 'localhost',
-			'database'   => 'fuel_prod',
-			'username'   => 'root',
-			'password'   => '',
+			'hostname'   => 'localhost:/tmp/mysql/willia.sock',
+			'database'   => 'willia',
+			'username'   => 'ursula',
+			'password'   => '7lvyn61F',
 			'persistent' => false,
 		),
 		'table_prefix' => '',

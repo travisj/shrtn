@@ -29,7 +29,7 @@ return array(
 	 * Fuel::QA
 	 * Fuel::PRODUCTION
 	 */
-	'environment'	=> Fuel::DEVELOPMENT,
+	'environment'	=> isset($_SERVER['ENVIRONMENT']) ? $_SERVER['ENVIRONMENT'] : Fuel::DEVELOPMENT,
 
 	'profiling'		=> false,
 
