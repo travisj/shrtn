@@ -19,14 +19,30 @@ class Controller_Urls extends Controller_Template {
 		$public = Input::get('public', 1);
 
 		if ($url) {
-			$u = new Model_Url;
-			$u->url = $url;
-			$u->title = $title;
-			$u->public = $public;
-			$u->save();
+			// see if the url has already been shortened
+			$u = Model_Url::findByUrl($url);
+			if (!$u) {
+				$props = array(
+					'url' => $url,
+					'title' => $title,
+					'public' => $public,
+					'deleted' => 0,
+				);
+				$u = new Model_Url($props);
+				$u->save();
+			}
+
+			$base36_id = base_convert($u->id, 10, 36);
+			if (Model_Url::bannedKey($base36_id)) {
+				$u->deleted = 1;
+				$u->save();
+
+				$u = new Model_Url($props);
+				$u->save();
+			}
 
 			$json = json_encode(array(
-				'url'=>'http://s.travisj.org/' . base_convert($u->id, 10, 36),
+				'url'=>'http://s.travisj.org/' . $base36_id,
 			));
 		} else {
 			$json = json_encode(array('error'=>'You did not provide a vaild URL.'));
@@ -37,37 +53,6 @@ class Controller_Urls extends Controller_Template {
 		} else {
 			exit($json);
 		}
-	}
-
-	public function action_bookmarklet()
-	{
-		exit("<a href=\"javascript:(
-			function(global){ 
-				var head = document.getElementsByTagName('head')[0];
-				_my_css=document.createElement('LINK');
-				_my_css.type='text/css'; 
-				_my_css.rel='stylesheet';
-				_my_css.href='http://localhost:8888/assets/lib/aristo/css/Aristo/jquery-ui-1.8.7.custom.css';
-				head.appendChild(_my_css); 
-
-				_my_script=document.createElement('SCRIPT');
-				_my_script.type='text/javascript'; 
-				_my_script.src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js'; 
-				head.appendChild(_my_script); 
-
-				_my_script=document.createElement('SCRIPT');
-				_my_script.type='text/javascript'; 
-				_my_script.src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js'; 
-				head.appendChild(_my_script); 
-
-				_my_script=document.createElement('SCRIPT');
-				_my_script.type='text/javascript'; 
-				_my_script.src='http://localhost:8888/assets/js/bookmark.js'; 
-				head.appendChild(_my_script); 
-
-				global._shrtn_host = 'localhost:8888';
-			}
-			)(this);\">s.travisj.org</a>");
 	}
 }
 

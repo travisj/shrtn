@@ -45,6 +45,22 @@ return array(
 		'profiling'    => false,
 	),
 
+	'production-tunnel' => array(
+		'type'			=> 'mysql',
+		'connection'	=> array(
+			'hostname'   => '127.0.0.1',
+			'database'   => 'willia',
+			'username'   => 'ursula',
+			'password'   => '7lvyn61F',
+			'persistent' => false,
+			'port'			 => 3307,
+		),
+		'table_prefix' => '',
+		'charset'      => 'utf8',
+		'caching'      => false,
+		'profiling'    => false,
+	),
+
 	'test' => array(
 		'type'			=> 'mysql',
 		'connection'	=> array(

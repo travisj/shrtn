@@ -10,8 +10,8 @@ class Create_urls {
 			'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true),
 			'title' => array('constraint'=>255, 'type'=>'varchar'),
 			'url' => array('type' => 'text'),
-			'public' => array('type'=>'tinyint'),
-
+			'public' => array('type'=>'tinyint', 'null'=>false, 'default'=>1),
+			'deleted' => array('type'=>'tinyint', 'null'=>false, 'default'=>0),
 		), array('id'));
 	}
 

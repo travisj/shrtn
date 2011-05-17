@@ -22,7 +22,7 @@ class Controller_Welcome extends Controller {
 		$data = array();
 		//$this->response->body = View::factory('welcome/index');
 		$data['urls'] = Model_Url::find('all', array(
-			'where' => array('public', 1),
+			'where' => array('public'=>1, 'deleted'=>0),
 			'limit' => 20,
 			'order_by' => array('id' => 'desc'),
 		));

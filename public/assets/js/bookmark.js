@@ -29,7 +29,6 @@
 						})
 					},
 					close: function() {
-						_$shrtn.remove();
 					}
 				});
 		}

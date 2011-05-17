@@ -29,7 +29,8 @@ return array(
 	 * Fuel::QA
 	 * Fuel::PRODUCTION
 	 */
-	'environment'	=> isset($_SERVER['ENVIRONMENT']) ? $_SERVER['ENVIRONMENT'] : Fuel::DEVELOPMENT,
+	//'environment'	=> isset($_SERVER['ENVIRONMENT']) ? $_SERVER['ENVIRONMENT'] : Fuel::DEVELOPMENT,
+	'environment'	=> 'production-tunnel',
 
 	'profiling'		=> false,
 
